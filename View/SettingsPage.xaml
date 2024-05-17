@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherWise.View.SettingsPage"
+             Title="Settings">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="How to Use" Clicked="OnHowToUseClicked" IconImageSource="{FontImage Glyph='?', Color=White, Size=22}" />
+    </ContentPage.ToolbarItems>
+    
+    <ScrollView>
+
+        <VerticalStackLayout Spacing="25" Padding="30">
+
+            <Switch x:Name="hapticFeedbackSwitch"
+                    IsToggled="{Binding IsHapticFeedbackEnabled}"
+                    Toggled="HapticFeedbackSwitch_Toggled"
+                    HorizontalOptions="Center"/>
+            <Label Text="Enable Haptic Feedback"
+                   HorizontalOptions="Center"/>
+
+            <!-- Battery status and help button -->
+            <Button Text="Show Battery Status" Clicked="OnShowBatteryStatusClicked" />
+            <Label x:Name="BatteryStatusLabel" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

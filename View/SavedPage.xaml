@@ -1,0 +1,32 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherWise.View.SavedPage"
+             Title="Add To My Journal">
+
+    <VerticalStackLayout Spacing="10" Margin="5">
+        <Frame BackgroundColor="{AppThemeBinding Light='White', Dark='DarkGray'}" CornerRadius="10" Padding="5">
+            <Editor x:Name="TextEditor" 
+                Placeholder="Enter your note" 
+                Text="{Binding Text}" 
+                HeightRequest="120"
+                BackgroundColor="Transparent"/>
+        </Frame>
+        <Grid ColumnDefinitions="1*, 1*" ColumnSpacing="10">
+            <Button Text="Save" 
+                BackgroundColor="#FFA500" 
+                TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" 
+                CornerRadius="10" 
+                Margin="0,5,5,0" 
+                Clicked="SaveButton_Clicked" 
+                FontAttributes="Bold"/>
+            <Button Grid.Column="1" 
+                Text="Delete" 
+                BackgroundColor="Red" 
+                TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"  
+                CornerRadius="10" 
+                Margin="5,5,0,0" 
+                Clicked="DeleteButton_Clicked" 
+                FontAttributes="Bold"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

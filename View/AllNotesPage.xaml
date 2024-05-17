@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherWise.View.AllNotesPage"
+             Title="My Journal">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="Add_Clicked" IconImageSource="{FontImage Glyph='+', Color=White, Size=22}" />
+        <ToolbarItem Text="How to Use" Clicked="OnHowToUseClicked" IconImageSource="{FontImage Glyph='?', Color=White, Size=22}" />
+    </ContentPage.ToolbarItems>
+
+
+    <CollectionView x:Name="notesCollection"
+                ItemsSource="{Binding Notes}"
+                Margin="10"
+                SelectionMode="Single">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="1" VerticalItemSpacing="8" />
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <SwipeView>
+                    <SwipeView.LeftItems>
+                        <SwipeItems Mode="Reveal">
+                            <SwipeItem Text="Remove" IconImageSource="{AppThemeBinding Light='delete_icon.png', Dark='delete_icon_white.png'}" BackgroundColor="LightBlue" Invoked="OnDeleteSwipeItemInvoked"/>
+                        </SwipeItems>
+                    </SwipeView.LeftItems>
+                    <Frame BorderColor="Gray" CornerRadius="5" Padding="5">
+                        <StackLayout>
+                            <Label Text="{Binding Text}" FontSize="20" FontAttributes="Bold" TextColor="Black"/>
+                            <Label Text="{Binding Date}" FontSize="12" TextColor="Gray"/>
+                        </StackLayout>
+                    </Frame>
+                </SwipeView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+
+</ContentPage>
+

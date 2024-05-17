@@ -1,0 +1,51 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WeatherWise.View"
+             x:Class="WeatherWise.View.GalleryPage"
+             Title="GalleryPage"
+             x:Name="Page">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="How to Use" Clicked="OnHowToUseClicked" IconImageSource="{FontImage Glyph='?', Color=White, Size=22}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="ImageConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="10">
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="3">
+                <Button Text="Upload Image" Margin="10" Padding="15" WidthRequest="100" Clicked="UploadImage_Clicked" />
+                <Button Grid.Column="1" Text="Open Camera" Clicked="OpenCamera_Clicked" Margin="10" Padding="15" WidthRequest="120" />
+            </Grid>
+            <FlexLayout Direction="Row" Wrap="Wrap" JustifyContent="SpaceAround" AlignItems="Start"
+                        BindableLayout.ItemsSource="{Binding ImageFiles}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems Mode="Reveal">
+                                    <SwipeItem
+                                               BackgroundColor="Red"
+                                               Command="{Binding Path=BindingContext.DeleteCommand, Source={x:Reference Page}}"
+                                               CommandParameter="{Binding .}"
+                                               IconImageSource="delete_icon.png"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Frame Margin="5" Padding="0" BorderColor="LightGray" CornerRadius="5">
+                                <Image Source="{Binding byteBase64, Converter={StaticResource ImageConverter}}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="300"
+                                       WidthRequest="300"/>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+
+</ContentPage>

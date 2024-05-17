@@ -1,0 +1,128 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>WeatherWise</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>WeatherWise</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.weatherwise</ApplicationId>
+		<ApplicationIdGuid>0d1fd58d-5e7f-4c3a-973d-e9cbd245ebd7</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon_weatherwise.png" Color="#ADD8E6"></MauiIcon>
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#ADD8E6" BaseSize="1200,1200"></MauiSplashScreen>
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\AppIcon\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\AppIcon\appicon_weatherwise.png" />
+	  <None Remove="Resources\Images\favourite_checked.png" />
+	  <None Remove="Resources\Images\favourite_unchecked.png" />
+	  <None Remove="Resources\Images\home.png" />
+	  <None Remove="Resources\Images\humidity.png" />
+	  <None Remove="Resources\Images\humidity_white.png" />
+	  <None Remove="Resources\Images\icon_about.png" />
+	  <None Remove="Resources\Images\icon_about_ios.png" />
+	  <None Remove="Resources\Images\icon_notes.png" />
+	  <None Remove="Resources\Images\icon_notes_ios.png" />
+	  <None Remove="Resources\Images\img_01d.png" />
+	  <None Remove="Resources\Images\img_01n.png" />
+	  <None Remove="Resources\Images\img_02d.webp" />
+	  <None Remove="Resources\Images\img_02n.png" />
+	  <None Remove="Resources\Images\img_03d.png" />
+	  <None Remove="Resources\Images\img_03n.png" />
+	  <None Remove="Resources\Images\img_04d.png" />
+	  <None Remove="Resources\Images\img_04n.png" />
+	  <None Remove="Resources\Images\img_09d.png" />
+	  <None Remove="Resources\Images\img_09n.png" />
+	  <None Remove="Resources\Images\img_10d.png" />
+	  <None Remove="Resources\Images\img_10n.png" />
+	  <None Remove="Resources\Images\img_11d.png" />
+	  <None Remove="Resources\Images\img_11n.png" />
+	  <None Remove="Resources\Images\img_13d.png" />
+	  <None Remove="Resources\Images\img_13n.png" />
+	  <None Remove="Resources\Images\img_50d.png" />
+	  <None Remove="Resources\Images\img_50n.png" />
+	  <None Remove="Resources\Images\microphone.png" />
+	  <None Remove="Resources\Images\pressure.png" />
+	  <None Remove="Resources\Images\pressure_white.png" />
+	  <None Remove="Resources\Images\search.png" />
+	  <None Remove="Resources\Images\search_white.png" />
+	  <None Remove="Resources\Images\settings.png" />
+	  <None Remove="Resources\Images\splash.png" />
+	  <None Remove="Resources\Images\wind.png" />
+	  <None Remove="Resources\Images\wind_white.png" />
+	  <None Remove="Resources\Splash\splash.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiSplashScreen Include="Resources\Splash\splash.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiIcon Include="Resources\AppIcon\appicon_weatherwise.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="Microsoft.UI.Xaml" Version="2.8.6" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Xam.Plugin.Media" Version="6.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="View\AllNotesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\GalleryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\LandingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\SavedPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Resources\AppIcon\appicon_weatherwise.webp" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+	  <None Update="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+	</ItemGroup>
+
+</Project>

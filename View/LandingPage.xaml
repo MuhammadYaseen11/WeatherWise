@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherWise.View.LandingPage"
+BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorLight}, Dark={StaticResource BackgroundColorDark}}"
+             Title="LandingPage">
+    <StackLayout
+    VerticalOptions="Center"
+    Margin="20"
+    Spacing="10">
+        <Image Source="img_11n"
+           HeightRequest="200"
+           WidthRequest="200" />
+        <Label 
+        Text="WeatherWise"
+        FontSize="38"
+TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" />
+
+        <Label 
+        Text="Start your journey with WeatherWise. Press the button below to proceed."
+TextColor="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}"
+        FontSize="16" />
+        <Button 
+        Text="Begin Now"
+        TextColor="Black"
+        FontSize="Large"
+        BackgroundColor="Yellow"
+        WidthRequest="260"
+        Margin="10,40,10,10"
+        x:Name="StartButton"
+        Clicked="StartButton_Clicked" />
+    </StackLayout>
+</ContentPage>
